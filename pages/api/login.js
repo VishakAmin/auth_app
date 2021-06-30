@@ -7,13 +7,15 @@ const loginhandler = async (req, res) => {
     const {email, password} = req.body;
 
     const checkData = await conn.query(
-      `SELECT email FROM user WHERE email=$1`,
+      `SELECT * FROM public.user WHERE email=$1`,
       [email]
     );
 
     if(checkData.rows.length > 0){
 
       const hashingPassword = crypto.createHash("md5").update(password).digest("hex");
+      // console.log( checkData.rows[0].password) 
+      // console.log( hashingPassword)
 
       if (hashingPassword === checkData.rows[0].password){
           return res.status(200).json({

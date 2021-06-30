@@ -1,16 +1,15 @@
 import  {useRouter } from "next/router"
-import  { useState, useEffect } from 'react';
+import  React, { useState, useEffect } from 'react';
 
 const AuthContext = React.createContext({
-  token: '',
   isLoggedIn: false,
-  login: (token) => {},
+  onLogin: async (data) => {},
   logout: () => {},
 });
 
 
 
-export const AuthContextProvider = () => {
+export const AuthContextProvider = (props) => {
 
   const router = useRouter();
 
@@ -25,9 +24,9 @@ export const AuthContextProvider = () => {
   },[])
 
   const logoutHandler = () => {
-  setIsLoggedIn(true);
+  setIsLoggedIn(false);
     localStorage.removeItem('accesstoken');
-    router.replace("/login");  
+    router.replace("/");  
   }
   
 
@@ -45,7 +44,7 @@ export const AuthContextProvider = () => {
   };
 
   const contextValue = {
-    isLoggedIn,
+    isLoggedIn : isLoggedIn,
     login: loginHandler,
     logout: logoutHandler,
   }

@@ -1,9 +1,14 @@
-import React from 'react'
+import React,{useContext, useState} from 'react'
 import Link from "next/link"
 
 import classes from './MainNavigation.module.css'
+import AuthContext from '../../store/auth-context';
 
 const MainNavigation = () => {
+
+  const { isLoggedIn, logout } = useContext(AuthContext);
+
+  console.log(isLoggedIn)
   return (
     <header className={classes.header}>
         <div className={classes.logo}>
@@ -12,13 +17,16 @@ const MainNavigation = () => {
 
         <nav>
             <ul>
+              
+                  {!isLoggedIn && (
+                      <li>
+                          <Link href="/">Sign Up</Link>
+                      </li>
+                  ) }
+              
               <li>
-                  Login
+                  {isLoggedIn && <button onClick={logout}>Logout</button>} 
               </li>
-              <li>
-                  <button type="">Logout</button> 
-              </li>
-
             </ul>
         </nav>
     </header>
