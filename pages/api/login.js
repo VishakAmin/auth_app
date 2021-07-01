@@ -7,7 +7,7 @@ const loginhandler = async (req, res) => {
     const {email, password} = req.body;
 
     const checkData = await conn.query(
-      `SELECT * FROM public.user WHERE email=$1`,
+      `SELECT * FROM public.users WHERE email=$1`,
       [email]
     );
 

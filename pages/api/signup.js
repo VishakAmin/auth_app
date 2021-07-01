@@ -6,8 +6,10 @@ const signuphandler = async (req, res) => {
   if(req.method === 'POST'){
     const {email, password} = req.body;
 
+    console.log(email)
+
     const checkEmail = await conn.query(
-      `SELECT email FROM public.user WHERE email=$1`,
+      `SELECT email FROM public.users WHERE email=$1`,
       [email]
     );
 
@@ -15,7 +17,7 @@ const signuphandler = async (req, res) => {
       const hashingPassword = crypto.createHash("md5").update(password).digest("hex");;
 
       const insertData = await conn.query(
-        `INSERT INTO public.user (email, password) values ($1, $2) RETURNING *`,
+        `INSERT INTO public.users (email, password) values ($1, $2) RETURNING *`,
         [email, hashingPassword]
       );
       return res.status(200).json({

@@ -2,8 +2,9 @@ import  {useRouter } from "next/router"
 import  React, { useState, useEffect } from 'react';
 
 const AuthContext = React.createContext({
+  email: "",
   isLoggedIn: false,
-  onLogin: async (data) => {},
+  login: async (data) => {},
   logout: () => {},
 });
 
@@ -14,14 +15,21 @@ export const AuthContextProvider = (props) => {
   const router = useRouter();
 
   const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const [email, setEmail] = useState("")
+
+  
+  
 
   useEffect (() => {
-    const retriveData = localStorage.getItem("accesstoken")
-    if(retriveData){
-      //islogged is true 
+    const storedInfo = localStorage.getItem("accessToken");
+    const parseData = JSON.parse(storedInfo)
+    setEmail(parseData.email)
+    if(storedInfo){
+      //islogged is true      
       setIsLoggedIn(true)
     }
   },[])
+
 
   const logoutHandler = () => {
   setIsLoggedIn(false);
@@ -47,6 +55,7 @@ export const AuthContextProvider = (props) => {
     isLoggedIn : isLoggedIn,
     login: loginHandler,
     logout: logoutHandler,
+    email:email
   }
 
   return (

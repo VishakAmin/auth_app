@@ -24,9 +24,26 @@ const MainNavigation = () => {
                       </li>
                   ) }
               
+
+
+              {isLoggedIn && (
+                      <li>
+                          <Link href="/home">Book Ticket</Link>
+                      </li>
+                  ) }
+                
+                {isLoggedIn && (
+                      <li>
+                          <Link href="/getbook">History</Link>
+                      </li>
+                  ) }
+
               <li>
                   {isLoggedIn && <button onClick={logout}>Logout</button>} 
               </li>
+              
+                   
+              
             </ul>
         </nav>
     </header>

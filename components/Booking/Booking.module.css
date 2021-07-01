@@ -1,0 +1,49 @@
+.box {
+  margin: 3rem auto;
+  border-radius: 2px;
+  width: 100%;
+  background-color: aliceblue;
+  box-shadow: 1px 2px 4px darkblue;
+  max-width: 40rem;
+  padding: 2rem;
+}
+
+.control {
+  display: flex;
+  justify-content: space-around;
+  padding: 0.2rem;
+}
+
+.control label {
+  padding-top: 2rem;
+  display: block;
+  color: #3d3635;
+  font-weight: bold;
+}
+
+.select {
+  width: 40%;
+}
+.control input {
+  font: inherit;
+  border-radius: 4px;
+  width: 40%;
+  padding: 0.25rem;
+  border-color: inherit;
+}
+
+.btn {
+  cursor: pointer;
+  font: inherit;
+  color: white;
+  background-color: #800000;
+  border: 1px solid #800000;
+  border-radius: 4px;
+  padding: 0.5rem 2.5rem;
+  margin-top: 2rem;
+}
+
+.btn:hover {
+  background-color: #a00000;
+  border-color: #a00000;
+}
