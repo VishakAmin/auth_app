@@ -21,6 +21,8 @@ export const AuthContextProvider = (props) => {
   
 
   useEffect (() => {
+
+    if(localStorage.getItem("accessToken") !== null ) {
     const storedInfo = localStorage.getItem("accessToken");
     const parseData = JSON.parse(storedInfo)
     setEmail(parseData.email)
@@ -28,12 +30,13 @@ export const AuthContextProvider = (props) => {
       //islogged is true      
       setIsLoggedIn(true)
     }
+  }
   },[])
 
 
   const logoutHandler = () => {
-  setIsLoggedIn(false);
-    localStorage.removeItem('accesstoken');
+    setIsLoggedIn(false);
+    localStorage.removeItem("accessToken");
     router.replace("/");  
   }
   

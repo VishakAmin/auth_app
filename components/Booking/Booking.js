@@ -4,14 +4,131 @@ import Select from 'react-select';
 import AuthContext from '../../store/auth-context';
 
 const Countries = [
-  { label: "Albania", },
-  { label: "Argentina" },
-  { label: "Austria" },
-  { label: "Cocos Isla1 "},
-  { label: "Kuwait"},
-  { label: "Sweden"},
-  { label: "Venezuela" }
+  {
+    label :"Andaman and Nicobar Islands"
+},
+{
+    label :"Andhra Pradesh"
+},
+{
+    label :"Arunachal Pradesh"
+},
+{
+    label :"Assam"
+},
+{
+    label :"Bihar"
+},
+{
+    label :"Chandigarh"
+},
+{
+    label :"Chhattisgarh"
+},
+{
+    label :"Dadra and Nagar Haveli"
+},
+{
+    label :"Daman and Diu"
+},
+{
+    label :"Delhi"
+},
+{
+    label :"Goa"
+},
+{
+    label :"Gujarat"
+},
+{
+    label :"Haryana"
+},
+{
+    label :"Himachal Pradesh"
+},
+{
+    label :"Jammu and Kashmir"
+},
+{
+    label :"Jharkhand"
+},
+{
+    label :"Karnataka"
+},
+{
+    label :"Kerala"
+},
+{
+    label :"Ladakh"
+},
+{
+    label :"Lakshadweep"
+},
+{
+    label :"Madhya Pradesh"
+},
+{
+    label :"Maharashtra"
+},
+{
+    label :"Manipur"
+},
+{
+    label :"Meghalaya"
+},
+{
+    label :"Mizoram"
+},
+{
+    label :"Nagaland"
+},
+{
+    label :"Odisha"
+},
+{
+    label :"Puducherry"
+},
+{
+    label :"Punjab"
+},
+{
+    label :"Rajasthan"
+},
+{
+    label :"Sikkim"
+},
+{
+    label :"Tamil Nadu"
+},
+{
+    label :"Telangana"
+},
+{
+    label :"Tripura"
+},
+{
+    label :"Uttar Pradesh"
+},
+{
+    label :"Uttarakhand"
+},
+{
+    label:"West Bengal"
+}
 ];
+
+
+const Flights = [  
+  {label : "Flight A3070"},
+  {label : "Flight A9070"},
+  {label : "Flight A5070"},
+  {label : "Flight A1060"},
+  {label : "Flight A800"},
+  {label : "Flight A3900"},
+  {label : "Flight A3010"},
+  {label : "Flight A3080"},
+
+]
 
 const Booking = () => {
 
@@ -97,7 +214,7 @@ const Booking = () => {
 
           <div className={classes.control}>
             <input type="date" name="Boarding Date" min="20-01-01"  onChange={handleInputChangeDate}/>      
-            <Select options={Countries}  onChange={handleInputChangeFlight} className={classes.select}/>    
+            <Select options={Flights}  onChange={handleInputChangeFlight} className={classes.select}/>    
           </div>
           <button className={classes.btn} type="submit">Submit</button>
         </form>          
