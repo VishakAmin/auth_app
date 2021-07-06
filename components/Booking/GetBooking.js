@@ -13,6 +13,7 @@ const GetBooking = () => {
   const [email, setEmail] = useState("")
 
 
+
   var emailId = ""
   if(localStorage.getItem("accessToken") !== null ) {
     const storedInfo = localStorage.getItem("accessToken");
@@ -79,6 +80,10 @@ const GetBooking = () => {
         <div className={classes.para}>
           <p><strong>Journey Date</strong>:  {list.journey_date}</p>
           <p><strong>Flight Number</strong> : {list.flight} </p>
+        </div>
+        <div className={classes.para}>
+          <p><strong>Travel Type</strong>:  {list.travel_type}</p>
+          <p><strong>Payment</strong> : ${list.payment} </p>
         </div>
       </div>
       </section>

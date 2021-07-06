@@ -130,6 +130,19 @@ const Flights = [
 
 ]
 
+
+const Payments = [  
+    {label : 500},
+]
+
+const Payments_Business = [  
+    {label : 2000},
+]
+const Class = [  
+    {label : "Economy"},
+    {label : "Business"}
+]
+
 const Booking = () => {
 
   const authCtx = useContext(AuthContext)
@@ -138,12 +151,19 @@ const Booking = () => {
   const [journeyDate, setJourneyDate] = useState(null)
   const [flight, setFlight] = useState(null)
   const [boardingCity, setBoardingCity] = useState(null)
+  const [payment, setPayment] = useState(null)
+  const [travelClass, setTravelClass] = useState(null)
   // const [email , setEmail] = useState(null)
   const [message, setMessage] = useState(null)
 
   
-  const email = authCtx.email
 
+  var emailId = ""
+  if(localStorage.getItem("accessToken") !== null ) {
+    const storedInfo = localStorage.getItem("accessToken");
+    const parseData = JSON.parse(storedInfo)
+    emailId =  parseData.email
+  }
 
 
   const data = { 
@@ -151,7 +171,9 @@ const Booking = () => {
    destination_city: destinationCity,
    journey_date : journeyDate,
    flight: flight,
-   email: email
+   email: emailId,
+   travel_type : travelClass,
+   payment : payment
  }
 
 
@@ -188,6 +210,14 @@ const Booking = () => {
     setFlight(e.label)
   }
 
+  const handleInputChangePayment = (e) => {
+        setPayment(e.label)      
+  }
+  const handleInputChangeClass = (e) => {
+            setTravelClass(e.label)
+}
+  
+
   console.log(journeyDate);
 
   return (
@@ -203,8 +233,8 @@ const Booking = () => {
           </div>
           
           <div className={classes.control}>
-            <Select options={Countries} className={classes.select}  onChange={handleInputChangeCity}/>
-            <Select options={Countries} className={classes.select}  onChange={handleInputChangeDest}/>      
+            <Select options={Countries} className={classes.select}  onChange={handleInputChangeCity}  isSearchable required/>
+            <Select options={Countries} className={classes.select}  onChange={handleInputChangeDest} required/>      
           </div>
 
           <div className={classes.control}>
@@ -213,9 +243,22 @@ const Booking = () => {
           </div>
 
           <div className={classes.control}>
-            <input type="date" name="Boarding Date" min="20-01-01"  onChange={handleInputChangeDate}/>      
-            <Select options={Flights}  onChange={handleInputChangeFlight} className={classes.select}/>    
+            <input type="date" name="Boarding Date" min="2021-07-07"  onChange={handleInputChangeDate} required/>      
+            <Select options={Flights}  onChange={handleInputChangeFlight} className={classes.select} required/>    
           </div>
+
+
+          <div className={classes.control}>
+            <label>Class/Traveller Type</label>
+            <label>Payment($)</label>
+          </div>
+
+
+          <div className={classes.control}>
+            <Select options={Class}  onChange={handleInputChangeClass} className={classes.select}/>    
+            <Select options={travelClass === "Business" ?  Payments_Business : Payments}  onChange={handleInputChangePayment} className={classes.select}/>    
+          </div>
+
           <button className={classes.btn} type="submit">Submit</button>
         </form>          
         </section>

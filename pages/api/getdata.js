@@ -3,11 +3,9 @@ const conn = require("../../utils/connection");
 const getBooking =  async (req, res) => {
 
   if(req.method === 'POST'){
-
+      
       const {email } = req.body
-     
-
-
+    
       const checkEmail = await conn.query(
         `SELECT email FROM public.booking WHERE email=$1`,
         [email]
