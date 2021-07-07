@@ -2,6 +2,8 @@ import React,{useState, useEffect} from 'react'
 import BarChart from "../components/Charts/BarChart";
 import GridLayout from "react-grid-layout";
 import KPI from '../components/Charts/KPI';
+import HorizontalBarChart from '../components/Charts/HorizontalBarChart';
+HorizontalBarChart
 
 const Visual = () => {
 
@@ -10,6 +12,7 @@ const Visual = () => {
     { i: "b", x: 1, y: 0, w: 3, h: 4, minW: 4, minH: 4 },
     { i: "c", x: 1, y: 0, w: 3, h: 5, minW: 4, minH: 4 },
     { i: "d", x: 5, y: 4, w: 7, h: 9, minW: 4, minH: 7 },
+    { i: "e", x: 6, y: 12, w: 7, h: 9, minW: 4, minH: 7 },
   ];
 
     const [bookings, setBookings] = useState([])
@@ -80,12 +83,18 @@ const Visual = () => {
 
 
         <div key="d" style={boxStyle}>
-
-        <BarChart bar_data={bookings.length > 0 ? bookings.map(e => {
+          <BarChart bar_data={bookings.length > 0 ? bookings.map(e => {
           return e.travel_type
         }): 0 }/>
-
         </div>
+
+
+        <div key="e" style={boxStyle}>
+          <HorizontalBarChart bar_data={bookings.length > 0 ? bookings.map(e => {
+          return e.destination_city
+        }): 0 }/>
+        </div>
+
       </GridLayout>
     </div>
   )

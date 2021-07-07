@@ -3,9 +3,7 @@ import { Bar } from 'react-chartjs-2';
 
 const VerticalBar = ({bar_data}) => {
 
-
 let business = 0, eco = 0;
-
 if(bar_data){
   bar_data.map((row, index) => {
     if (row === "Business"){
@@ -14,10 +12,8 @@ if(bar_data){
     else if (row === "Economy"){
       eco++;
     }
-    
   })
 }
-
 
 const data = {
   labels: ['Business', 'Economy' ],
@@ -59,15 +55,12 @@ const options = {
   },
 };
 
-
-console.log(bar_data);
-
 return(
   <>
     <Bar data={data} options={options} />
   </>
 
-)
-};
+)};
+
 
 export default VerticalBar;
