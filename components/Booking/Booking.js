@@ -1,7 +1,9 @@
 import React,{useState, useContext, useEffect} from 'react';
 import classes from './Booking.module.css'
-import Select from 'react-select';
 import AuthContext from '../../store/auth-context';
+import BaseSelect from "react-select";
+import FixRequiredSelect from "./FixRequiredSelect";
+
 
 const Countries = [
   {
@@ -143,9 +145,19 @@ const Class = [
     {label : "Business"}
 ]
 
+
+const Select = props => (
+    <FixRequiredSelect
+      {...props}
+      SelectComponent={BaseSelect}
+      options={props.options || options}
+    />
+);
+
+  
 const Booking = () => {
 
-  const authCtx = useContext(AuthContext)
+   const authCtx = useContext(AuthContext)
 
   const [destinationCity, setDestinationCity] = useState(null)
   const [journeyDate, setJourneyDate] = useState(null)
@@ -155,6 +167,7 @@ const Booking = () => {
   const [travelClass, setTravelClass] = useState(null)
   // const [email , setEmail] = useState(null)
   const [message, setMessage] = useState(null)
+
 
   
 
@@ -233,7 +246,7 @@ const Booking = () => {
           </div>
           
           <div className={classes.control}>
-            <Select options={Countries} className={classes.select}  onChange={handleInputChangeCity}  isSearchable required/>
+            <Select options={Countries} className={classes.select}  onChange={handleInputChangeCity} required/>
             <Select options={Countries} className={classes.select}  onChange={handleInputChangeDest} required/>      
           </div>
 
@@ -243,7 +256,7 @@ const Booking = () => {
           </div>
 
           <div className={classes.control}>
-            <input type="date" name="Boarding Date" min="2021-07-07"  onChange={handleInputChangeDate} required/>      
+            <input type="date"  name="Boarding Date" min="2021-07-07"  onChange={handleInputChangeDate} required style={{width:"33%"}}/>      
             <Select options={Flights}  onChange={handleInputChangeFlight} className={classes.select} required/>    
           </div>
 
@@ -255,8 +268,8 @@ const Booking = () => {
 
 
           <div className={classes.control}>
-            <Select options={Class}  onChange={handleInputChangeClass} className={classes.select}/>    
-            <Select options={travelClass === "Business" ?  Payments_Business : Payments}  onChange={handleInputChangePayment} className={classes.select}/>    
+            <Select options={Class}  onChange={handleInputChangeClass} className={classes.select} required/>    
+            <Select options={travelClass === "Business" ?  Payments_Business : Payments}  onChange={handleInputChangePayment} className={classes.select} required/>    
           </div>
 
           <button className={classes.btn} type="submit">Submit</button>
