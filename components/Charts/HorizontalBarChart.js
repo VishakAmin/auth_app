@@ -1,11 +1,7 @@
 import React from 'react';
 import { Bar } from 'react-chartjs-2';
 
-
 const HorizontalBarChart = ({bar_data}) => {
-
-  console.log(bar_data);
-
 
   let o = {}
   if(bar_data){  
