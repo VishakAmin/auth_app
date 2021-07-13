@@ -256,7 +256,7 @@ const Booking = () => {
           </div>
 
           <div className={classes.control}>
-            <input type="date"  name="Boarding Date" min="2021-07-07"  onChange={handleInputChangeDate} required style={{width:"33%"}}/>      
+            <input type="date"  name="Boarding Date" min="2021-07-13"  onChange={handleInputChangeDate} required style={{width:"33%"}}/>      
             <Select options={Flights}  onChange={handleInputChangeFlight} className={classes.select} required/>    
           </div>
 

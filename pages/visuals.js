@@ -3,7 +3,8 @@ import BarChart from "../components/Charts/BarChart";
 import GridLayout from "react-grid-layout";
 import KPI from '../components/Charts/KPI';
 import HorizontalBarChart from '../components/Charts/HorizontalBarChart';
-HorizontalBarChart
+import PaymentBarChart from '../components/Charts/PaymentBarChart';
+
 
 const Visual = () => {
 
@@ -13,6 +14,7 @@ const Visual = () => {
     { i: "c", x: 1, y: 0, w: 3, h: 5, minW: 4, minH: 4 },
     { i: "d", x: 5, y: 4, w: 7, h: 9, minW: 4, minH: 7 },
     { i: "e", x: 6, y: 12, w: 7, h: 9, minW: 4, minH: 7 },
+    { i: "f", x: 7, y: 13, w: 7, h: 9, minW: 4, minH: 7 },
   ];
 
     const [bookings, setBookings] = useState([])
@@ -63,7 +65,7 @@ const Visual = () => {
     <div>
         <h1 style={{textAlign:"center"}}>Visuals of Tickets</h1>
         
-  <GridLayout className="layout" layout={layout} cols={12} rowHeight={30} width={1200}>
+    <GridLayout className="layout" layout={layout} cols={12} rowHeight={30} width={1200}>
         <div key="a" style={boxStyle}>
         <KPI bar_data={bookings.length > 0 ? bookings.map(e => {
           return e.payment
@@ -81,16 +83,21 @@ const Visual = () => {
         }): 0} title ="Most Travel City"/>
         </div>
 
-
         <div key="d" style={boxStyle}>
           <BarChart bar_data={bookings.length > 0 ? bookings.map(e => {
           return e.travel_type
         }): 0 }/>
         </div>
 
-
         <div key="e" style={boxStyle}>
           <HorizontalBarChart bar_data={bookings.length > 0 ? bookings.map(e => {
+          return e.destination_city
+        }): 0 }/>
+        
+        </div>
+
+        <div key="f" style={boxStyle}>
+          <PaymentBarChart bar_data={bookings.length > 0 ? bookings.map(e => {
           return e.destination_city
         }): 0 }/>
         </div>
