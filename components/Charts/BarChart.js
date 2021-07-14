@@ -15,6 +15,7 @@ if(bar_data){
   })
 }
 
+
 const data = {
   labels: ['Business', 'Economy' ],
   datasets: [
@@ -61,6 +62,7 @@ return(
   </>
 
 )};
+
 
 
 export default VerticalBar;

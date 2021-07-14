@@ -1,40 +1,42 @@
 import React from 'react';
 import { Bar } from 'react-chartjs-2';
+import moment  from 'moment';
 
 const HorizontalBarChart = ({bar_data}) => {
 
-  let o = {}
-  if(bar_data){  
-      o = bar_data.reduce((s, a) => {
+  
 
-      if(s.hasOwnProperty(a)){
-        // console.log("Incre", s[a]+1);
-        s[a] = s[a]+1;
-      }else{
-        s[a] = 1
-      }
+  const chartDataPoints = [
+    { label: 'Jan', value: 0 },
+    { label: 'Feb', value: 0 },
+    { label: 'Mar', value: 0 },
+    { label: 'Apr', value: 0 },
+    { label: 'May', value: 0 },
+    { label: 'Jun', value: 0 },
+    { label: 'Jul', value: 0 },
+    { label: 'Aug', value: 0 },
+    { label: 'Sep', value: 0 },
+    { label: 'Oct', value: 0 },
+    { label: 'Nov', value: 0 },
+    { label: 'Dec', value: 0 },
+  ];
 
-      
-      return s;
-   }, {});
-   
-   console.log(Object.values(o));
-   console.log(Object.keys(o));
+  for (let i =0; i < bar_data.length ; i++){
+      const d = Date.parse(bar_data[i])
+      const month = parseInt(moment(d).format("M"))
+      // console.log((month));
+      chartDataPoints[month-1].value += 1
   }
-  // for (let i = 0 ; i < bar_data.length ; i++){
 
-  //   //dict[bar_data[i]] = 1
-  //   console.log(bar_data[i]);
-  // }
-
-
-
+  const months = chartDataPoints.map(data => data.label)
+  console.log(months); 
+  
   const data = {
-    labels: Object.keys(o),
+    labels: chartDataPoints.map(data => data.label),
     datasets: [
       {
-        label: '# of Votes',
-        data: Object.values(o),
+        label: 'Travel per month',
+        data: chartDataPoints.map(data => data.value),
         backgroundColor: [
           'rgba(255, 99, 132, 0.2)',
           'rgba(54, 162, 235, 0.2)',
@@ -65,15 +67,15 @@ const HorizontalBarChart = ({bar_data}) => {
             beginAtZero: true,
           },
         },
-      ],
-    },
-  };
-  
+      ]
+    }
+  }
 
   return (
   <>
     <Bar data={data} options={options} />
   </>
 )};
+
 
 export default HorizontalBarChart;

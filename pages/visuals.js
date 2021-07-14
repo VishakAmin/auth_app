@@ -14,7 +14,7 @@ const Visual = () => {
     { i: "c", x: 1, y: 0, w: 3, h: 5, minW: 4, minH: 4 },
     { i: "d", x: 5, y: 4, w: 7, h: 9, minW: 4, minH: 7 },
     { i: "e", x: 6, y: 12, w: 7, h: 9, minW: 4, minH: 7 },
-    { i: "f", x: 7, y: 13, w: 7, h: 9, minW: 4, minH: 7 },
+    { i: "f", x: 7, y: 13, w: 7, h: 10, minW: 4, minH: 7 },
   ];
 
     const [bookings, setBookings] = useState([])
@@ -98,7 +98,7 @@ const Visual = () => {
 
         <div key="f" style={boxStyle}>
           <PaymentBarChart bar_data={bookings.length > 0 ? bookings.map(e => {
-          return e.destination_city
+          return e.journey_date
         }): 0 }/>
         </div>
 
@@ -106,5 +106,7 @@ const Visual = () => {
     </div>
   )
 }
+
+
 
 export default Visual;
